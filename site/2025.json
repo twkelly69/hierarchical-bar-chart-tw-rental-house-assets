@@ -1,0 +1,45 @@
+{
+  "name": "台灣租屋資產",
+  "children": [
+    {
+      "name": "台北市",
+      "children": [
+        { "name": "公寓", "value": 3100 },
+        { "name": "套房", "value": 2500 },
+        { "name": "整層住家", "value": 2200 }
+      ]
+    },
+    {
+      "name": "新北市",
+      "children": [
+        { "name": "公寓", "value": 2800 },
+        { "name": "套房", "value": 2300 },
+        { "name": "整層住家", "value": 1900 }
+      ]
+    },
+    {
+      "name": "桃園",
+      "children": [
+        { "name": "公寓", "value": 1800 },
+        { "name": "套房", "value": 1500 },
+        { "name": "整層住家", "value": 1300 }
+      ]
+    },
+    {
+      "name": "台中",
+      "children": [
+        { "name": "公寓", "value": 2200 },
+        { "name": "套房", "value": 1800 },
+        { "name": "整層住家", "value": 1500 }
+      ]
+    },
+    {
+      "name": "台南",
+      "children": [
+        { "name": "公寓", "value": 1400 },
+        { "name": "套房", "value": 1200 },
+        { "name": "整層住家", "value": 1000 }
+      ]
+    }
+  ]
+}

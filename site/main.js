@@ -1,50 +1,10 @@
-const dataset = [
-  {
-    name: "台北市",
-    value: 7200,
-    children: [
-      { name: "公寓", value: 2800 },
-      { name: "套房", value: 2400 },
-      { name: "整層住家", value: 2000 },
-    ],
-  },
-  {
-    name: "新北市",
-    value: 6400,
-    children: [
-      { name: "公寓", value: 2600 },
-      { name: "套房", value: 2200 },
-      { name: "整層住家", value: 1600 },
-    ],
-  },
-  {
-    name: "桃園",
-    value: 4200,
-    children: [
-      { name: "公寓", value: 1600 },
-      { name: "套房", value: 1400 },
-      { name: "整層住家", value: 1200 },
-    ],
-  },
-  {
-    name: "台中",
-    value: 5100,
-    children: [
-      { name: "公寓", value: 2000 },
-      { name: "套房", value: 1700 },
-      { name: "整層住家", value: 1400 },
-    ],
-  },
-  {
-    name: "台南",
-    value: 3300,
-    children: [
-      { name: "公寓", value: 1300 },
-      { name: "套房", value: 1100 },
-      { name: "整層住家", value: 900 },
-    ],
-  },
-];
+async function loadData() {
+  const response = await fetch("2025.json");
+  if (!response.ok) {
+    throw new Error(`無法載入資料：${response.status}`);
+  }
+  return response.json();
+}
 
 const width = 900;
 const height = 520;
@@ -63,12 +23,8 @@ const x = d3.scaleLinear().range([0, innerWidth]);
 const y = d3.scaleBand().range([0, innerHeight]).padding(0.2);
 const color = d3.scaleOrdinal(d3.schemeSet2);
 
-const root = d3
-  .hierarchy({ name: "台灣租屋資產", children: dataset })
-  .sum((d) => d.value)
-  .sort((a, b) => d3.descending(a.value, b.value));
-
-let currentNode = root;
+let root;
+let currentNode;
 
 const breadcrumbEl = document.getElementById("breadcrumb");
 const backButton = document.getElementById("back-button");
@@ -161,9 +117,30 @@ function render(node) {
 }
 
 backButton.addEventListener("click", () => {
-  if (currentNode.parent) {
+  if (currentNode && currentNode.parent) {
     render(currentNode.parent);
   }
 });
 
-render(root);
+loadData()
+  .then((data) => {
+    root = d3
+      .hierarchy(data)
+      .sum((d) => d.value)
+      .sort((a, b) => d3.descending(a.value, b.value));
+
+    render(root);
+  })
+  .catch((error) => {
+    console.error(error);
+    breadcrumbEl.textContent = "資料載入失敗";
+    backButton.disabled = true;
+
+    chart
+      .append("text")
+      .attr("x", innerWidth / 2)
+      .attr("y", innerHeight / 2)
+      .attr("text-anchor", "middle")
+      .attr("fill", "#b00020")
+      .text("無法載入 2025.json 資料");
+  });

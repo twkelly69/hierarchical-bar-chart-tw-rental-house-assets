@@ -1,4 +1,6 @@
-# 台灣租屋資產分層長條圖
+# hierarchical-bar-chart-tw-rental-house-assets
+
+（台灣租屋資產分層長條圖）
 
 這是一個以 D3.js 建立的互動式階層長條圖，示範如何將純前端專案部署到 GitHub Pages。資料為虛構的租屋資產概況，可點擊長條深入下一層分類，或返回上一層瀏覽。
 
@@ -28,9 +30,10 @@
 
 ```
 site/
-  index.html  # 視覺化頁面與 D3.js 匯入
-  styles.css  # 佈景、排版與互動提示樣式
-  main.js     # 階層長條圖資料、互動與導覽邏輯
+  index.html   # 視覺化頁面與 D3.js 匯入
+  styles.css   # 佈景、排版與互動提示樣式
+  main.js      # 階層長條圖互動與導覽邏輯
+  2025.json    # 2025 年度的租屋資產階層資料
 ```
 
 歡迎依照需求替換資料集或調整樣式，提交後即會透過 GitHub Pages 自動更新網站。
