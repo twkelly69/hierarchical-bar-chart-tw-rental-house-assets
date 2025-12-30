@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>台灣租屋資產分層長條圖</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+</head>
+<body>
+  <header class="hero">
+    <div>
+      <p class="eyebrow">GitHub Pages 範例部署</p>
+      <h1>台灣租屋資產分層長條圖</h1>
+      <p class="lede">
+        點擊長條即可深入下一層，或使用上方導覽回到上一層，示範如何將靜態可視化部署到 GitHub Pages。
+      </p>
+      <div class="meta">
+        <span class="pill">D3.js</span>
+        <span class="pill">互動</span>
+        <span class="pill">無需後端</span>
+      </div>
+    </div>
+    <a
+      class="cta"
+      href="https://<你的 GitHub 帳號>.github.io/hierarchical-bar-chart-tw-rental-house-assets/"
+      target="_blank"
+      rel="noreferrer"
+    >在 GitHub Pages 上預覽</a>
+  </header>
+
+  <main class="layout">
+    <section class="panel">
+      <div class="panel-header">
+        <div>
+          <p class="label">目前層級</p>
+          <h2 id="breadcrumb">台灣租屋資產</h2>
+        </div>
+        <button id="back-button" class="ghost" disabled>返回上一層</button>
+      </div>
+      <svg id="chart" role="img" aria-label="台灣租屋資產分層長條圖"></svg>
+      <p class="hint">提示：點擊有子分類的長條可深入查看，沒有子分類則顯示該層級的租屋單位數。</p>
+    </section>
+
+    <section class="panel legend">
+      <div class="panel-header">
+        <div>
+          <p class="label">資料說明</p>
+          <h3>分類結構</h3>
+        </div>
+      </div>
+      <ul id="legend-list"></ul>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>示範如何從靜態檔案部署到 GitHub Pages，資料為虛構範例，僅供展示互動階層長條圖。</p>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>
